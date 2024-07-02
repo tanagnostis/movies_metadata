@@ -119,7 +119,7 @@ class DatasetOperations:
             json file
         """
         result = self.df.to_dict('records')
-        filepath = "../data/"
+        filepath = "data/"
         filename = "movies_metadata.json"
         if not os.path.exists(filepath+filename):
             with open(filepath+filename, "w") as outfile: 
@@ -127,7 +127,7 @@ class DatasetOperations:
         else:
             print('JSON file already exists!')
         
-m_df = LoadDataset('../data/movies_metadata.csv').load()
+m_df = LoadDataset('data/movies_metadata.csv').load()
 clean_df = DatasetOperations(m_df).data_preprocessing()
 DatasetOperations(clean_df).unique_movies_number()
 DatasetOperations(clean_df).average_movie_rating()
