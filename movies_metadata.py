@@ -51,10 +51,10 @@ class DatasetOperations:
                 self.df.iloc[i,22] = float(self.df.iloc[i+1,13])                # vote_average
                 self.df.iloc[i,23] = float(self.df.iloc[i+1,14])                # vote_count
             self.df.drop([19730,29503,35587], inplace = True)
-            print("Data Pre-Processing completed")
+            print("Data Pre-Processing completed!\n")
             return self.df
         except:
-            print("Failed pre-processing")
+            print("Failed pre-processing!\n")
 
     def unique_movies_number(self):
         """
@@ -65,7 +65,7 @@ class DatasetOperations:
         """
         
         unique_movies_nr = self.df[['original_title','release_date']].value_counts().count()
-        print(f"Number of the unique movies: {unique_movies_nr}")
+        print(f"Number of the unique movies: {unique_movies_nr}\n")
     
     def average_movie_rating(self):
         """
@@ -76,7 +76,7 @@ class DatasetOperations:
         """
 
         average_movie_rating = round(self.df.vote_average.mean(),2)
-        print(f"Average rating of all the movies: {average_movie_rating}")
+        print(f"Average rating of all the movies: {average_movie_rating}\n")
 
     def top_five_rated(self):
         """
@@ -97,6 +97,7 @@ class DatasetOperations:
         """
         warnings.simplefilter(action='ignore', category=UserWarning)
         year_value_count = self.df[self.df.status=='Released'][~self.df['release_date'].isna()].release_date.str[:4].value_counts().sort_index()
+        print("Releases per year:\n")
         print("\n".join(f"{year}: {year_count}" for year, year_count in zip(year_value_count.index.to_list(),  year_value_count.to_list())))
 
     def movies_per_genre(self):
@@ -109,6 +110,7 @@ class DatasetOperations:
         genres_list = [value['name'] for x in self.df.genres.to_list() for value in eval(x)]
         genre_counter = Counter( genres_list )
         genre_counts = sorted(genre_counter.items(), key = lambda i: i[0])
+        print("Movies per genre:\n")
         print("\n".join(f"{genre}: {genre_count}" for genre, genre_count in genre_counts ))
 
     def save_to_json(self):
@@ -124,6 +126,7 @@ class DatasetOperations:
         if not os.path.exists(filepath+filename):
             with open(filepath+filename, "w") as outfile: 
                 json.dump(result, outfile)
+                print("JSON file created!")
         else:
             print('JSON file already exists!')
         
