@@ -8,3 +8,4 @@ version = "1.0"
 authors = [
   {name = "Thomas Anagnostis", email = "anagnostis92t@gmail.com" }
 ]
+dependencies = ["numpy", "pandas"]
