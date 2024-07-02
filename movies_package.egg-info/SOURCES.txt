@@ -1,9 +1,0 @@
-README.md
-module.py
-pyproject.toml
-setup.cfg
-movies_package.egg-info/PKG-INFO
-movies_package.egg-info/SOURCES.txt
-movies_package.egg-info/dependency_links.txt
-movies_package.egg-info/top_level.txt
-movies_package.egg-info/zip-safe
